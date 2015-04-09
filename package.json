@@ -1,6 +1,7 @@
 {
   "name": "moniker-level",
-  "version": "0.0.0",
+  "private": true,
+  "version": "0.1.0",
   "description": "Monikerjs database and interface",
   "main": "index.js",
   "scripts": {
@@ -8,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/monikerjs/moniker-level.git"
+    "url": "git://github.com/monikerjs/moniker-level.git"
   },
   "keywords": [
     "leveldb",
@@ -16,14 +17,13 @@
     "monikerjs"
   ],
   "author": "Matt Styles",
-  "license": "ISC",
+  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/monikerjs/moniker-level/issues"
   },
   "homepage": "https://github.com/monikerjs/moniker-level",
   "dependencies": {
     "babel": "^5.0.12",
-    "errno": "^0.1.2",
     "level-party": "^1.0.1",
     "level-promisify": "^2.0.0-rc",
     "level-sublevel": "^6.4.6",
