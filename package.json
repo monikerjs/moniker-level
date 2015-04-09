@@ -1,0 +1,33 @@
+{
+  "name": "moniker-level",
+  "version": "0.0.0",
+  "description": "Monikerjs database and interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/monikerjs/moniker-level.git"
+  },
+  "keywords": [
+    "leveldb",
+    "moniker",
+    "monikerjs"
+  ],
+  "author": "Matt Styles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monikerjs/moniker-level/issues"
+  },
+  "homepage": "https://github.com/monikerjs/moniker-level",
+  "dependencies": {
+    "babel": "^5.0.12",
+    "level-party": "^1.0.1",
+    "level-promisify": "^2.0.0-rc",
+    "level-sublevel": "^6.4.6",
+    "mkdirp": "^0.5.0",
+    "node-uuid": "^1.4.3",
+    "osenv": "^0.1.0"
+  }
+}
