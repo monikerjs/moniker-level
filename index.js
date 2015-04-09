@@ -27,33 +27,7 @@ var sublevel = require( 'level-sublevel' );
 var promisify = require( 'level-promisify' );
 
 
-/**
- * Collection of sublevel categories.
- * Db categories are specified by user e.g. English, French, Australian.
- */
-class SublevelCollection {
-    constructor() {
-        this.col = {};
-    }
-
-    add( name, sub ) {
-        // Ensure name does not exist already in collection
-        if ( this.find( name ) ) {
-            throw new Error( name + 'already exists' );
-        }
-
-        this.col[ name ] = sub;
-
-        return this.col[ name ];
-    }
-
-
-    find( name ) {
-        if ( Object.keys( this.col ).includes( name ) ) {
-            return this.col[ name ];
-        }
-    }
-}
+import SublevelCollection from './lib/sublevel-collection';
 
 
 /**
