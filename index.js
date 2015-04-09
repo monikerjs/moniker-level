@@ -10,7 +10,6 @@ var mkdirp = require( 'mkdirp' );
 var dbpath = path.join( osenv.home(), process.env.DBPATH || process.env.npm_package_config_dbpath || pkg.name );
 var dbname = process.env.DBNAME || process.env.npm_package_config_dbname || '/names.lev';
 
-
 // Ensure dbpath is valid
 try {
     fs.statSync( dbpath );
@@ -22,8 +21,9 @@ try {
     }
 }
 
-var level = require( 'level-party' )( path.join( dbpath, dbname ) );
-var sub = require( 'level-sublevel' )( level );
+// Raw level stuff
+var party = require( 'level-party' );
+var sublevel = require( 'level-sublevel' );
 var promisify = require( 'level-promisify' );
 
 
@@ -59,15 +59,18 @@ class SublevelCollection {
 /**
  * The db instance
  */
-class DB extends EventEmitter {
+class MonikerLevel extends EventEmitter {
     constructor() {
         super();
+
+        this.level = party( path.join( dbpath, dbname ) );
+        this.master = sublevel( this.level );
 
         // Create sublevels
         this.subs = new SublevelCollection();
 
         // Add meta collection
-        this.meta = this.subs.add( 'meta', promisify( sub.sublevel( 'meta', {
+        this.meta = this.subs.add( 'meta', promisify( this.master.sublevel( 'meta', {
             encoding: 'json'
         })));
 
@@ -119,7 +122,7 @@ class DB extends EventEmitter {
                 return reject();
             }
 
-            var cat = promisify( sub.sublevel( category, {
+            var cat = promisify( this.master.sublevel( category, {
                 encoding: 'json'
             }));
 
@@ -135,7 +138,7 @@ class DB extends EventEmitter {
             this.meta.get( 'categories' )
                 .then( res => {
                     if ( res.includes( category ) ) {
-                        console.warn( '[DB] Sublevel already exists in category ' + category );
+                        console.warn( '[DB] Sublevel already exists in categories ' + category );
                     } else {
                         res.push( category );
                     }
@@ -268,4 +271,4 @@ class DB extends EventEmitter {
 }
 
 
-export default new DB();
+export default new MonikerLevel();
