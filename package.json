@@ -24,6 +24,7 @@
   "homepage": "https://github.com/monikerjs/moniker-level",
   "dependencies": {
     "babel": "^5.0.12",
+    "errno": "^0.1.2",
     "level-party": "^1.0.1",
     "level-promisify": "^2.0.0-rc",
     "level-sublevel": "^6.4.6",
